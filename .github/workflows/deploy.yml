@@ -1,0 +1,24 @@
+name: My project deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+      - name: Update repository
+        working-directory: home/mousa_albadwi/MousaQATraningGithub
+        run: |
+          git fetch origin main
+          git reset --hard origin/main
+      - name: CPU status
+        working-directory: home/mousa_albadwi/MousaQATraningGithub
+        run: w
+
+      - name: Ram status
+        working-directory: home/mousa_albadwi/MousaQATraningGithub
+        run: free -h
