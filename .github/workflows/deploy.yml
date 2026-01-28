@@ -2,23 +2,20 @@ name: My project deploy
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
 
 jobs:
   deploy:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
 
     steps:
-      - name: Update repository
-        working-directory: home/mousa_albadwi/MousaQATraningGithub
-        run: |
-          git fetch origin main
-          git reset --hard origin/main
-      - name: CPU status
-        working-directory: home/mousa_albadwi/MousaQATraningGithub
-        run: w
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - name: Ram status
-        working-directory: home/mousa_albadwi/MousaQATraningGithub
-        run: free -h
+      - name: Verify workspace
+        run: |
+          pwd
+          ls -la
+
+      - name: Dummy deploy step
+        run: echo "Workflow is working correctly"
